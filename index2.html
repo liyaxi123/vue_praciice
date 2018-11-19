@@ -12,7 +12,7 @@
   <template v-if="list.length">
     <table>
         <thead>
-            <td>全选<input type="checkbox" v-model:checked="checked" v-on:click="all()"></td>
+            <td>全选<input type="checkbox" v-bind:checked="checked" v-on:click="all()"></td>
             <td></td>
             <th>商品名称</th>
             <th>商品单价</th>
@@ -22,7 +22,7 @@
         <tbody>
            <template v-for="(item,indexs) in list">
                <tr v-for="(itemchild,index) in item">
-                    <td><input type="checkbox" v-model:checked="list[indexs][index].checked" v-on:click="click(indexs,index)"></td>
+                    <td><input type="checkbox" v-bind:checked="list[indexs][index].checked" v-on:click="click(indexs,index)"></td>
                     <td>{{indexs+1}}-{{index+1}}</td>
                    <td>{{list[indexs][index].name}}</td>
                    <td>{{list[indexs][index].price|yuan()}}</td>

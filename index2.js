@@ -70,7 +70,9 @@ var app= new Vue({
         var total=0
         for(var i=0;i<lens;i++){
             for(var j=0;j<this.list[i].length;j++){
+                if(this.list[i][j].checked===true){
                  total+=this.list[i][j].count*this.list[i][j].price
+                }
             }
         }
         return total.toString().replace(/\B(?=(\d{3})+$)/g,',');
