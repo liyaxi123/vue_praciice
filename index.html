@@ -5,7 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>goshopping</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <style>
+  table{
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+}
+td,th{
+    padding: 8px 16px;
+    border: 1px solid black;
+    text-align: left;
+}
+th{
+    background: #f7f7f7;
+    color:#5c6b77;
+    font-weight: 600;
+    white-space: nowrap; 
+    /* 如何处理空白符 */
+}</style>
 </head>
 <body>
   <div id="app" v-cloak>
@@ -14,7 +32,6 @@
         <thead>
           <th>全选<input type="checkbox" v-on:click="click()" v-model:checked="checked"></th>
           <th></th>
-          
           <th>商品名称</th>
           <th>商品单价</th>
           <th>购买数量</th>

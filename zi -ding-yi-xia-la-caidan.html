@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自定义指令下拉菜单</title>
+    <style>
+    .con{
+        border: 1px solid black;
+    width: 120px;
+    height: 180px;
+    margin-top: -1px;
+    }
+    .content{
+        width: 122px;
+    }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="content" v-control="handleclose">
+            <button @click="show=!show" class="btn">点击显示下拉菜单</button>
+            <div v-show="show" class="con">下拉菜单显示内容，点击外部可关闭</div>
+        </div>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>   
+<script>
+    Vue.directive('control',{
+        bind: function(el,binding){
+           function documentHandle(e){
+            if(el.contains(e.target)){
+                return false
+            }
+            if(binding.expression){
+                 binding.value();
+            }
+           };
+           //想要移除绑定，需要给事件重新定义一个引用，
+           el._yuansu = documentHandle;
+           document.addEventListener('click',documentHandle)
+        },
+        unbind: function(el,binding){
+            //这里运用引用来解除事件监听
+            document.removeEventListener('click',el._yuansu);
+            //最后删除创建的引用属性。
+            delete el._yuansu
+        }
+    });
+    var app =new Vue({
+        el:'#app',
+        data:{
+            show:'true'
+        },
+        methods:{
+            handleclose: function(){
+               this.show=false;
+            }
+        }
+    })
+</script>
+</body>
+</html>
