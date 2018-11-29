@@ -86,3 +86,6 @@ Vue.component('tabs',{
         }
     }
 })
+
+
+
